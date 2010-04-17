@@ -1,0 +1,29 @@
+StringUtils
+===========
+
+This library was meant to be used with Jacob Seidelin's BinaryAjax library. 
+The necessity for reading UTF-8 and UTF-16 strings was risen while developing the ID3 reader [ID3 Reader](http://www.aadsm.net/libraries/id3/) since the input is only an array of bytes that must be read in a specific charset.
+
+How To Use It
+-------------
+    >StringUtils.readUTF8String([0xe6,0xac,0xa1,0xe5,0xb8,0xb8,0xe7,0x94,0xa8,0xe5,
+                                 0x9c,0x8b,0xe5,0xad,0x97,0xe6,0xa8,0x99,0xe6,0xba, 
+                                 0x96,0xe5,0xad,0x97,0xe9,0xab,0x94,0xe8,0xa1,0xa8])
+    "æ¬¡å¸¸ç”¨åœ‹å­—æ¨™æº–å­—é«”è¡¨"
+
+    >StringUtils.readUTF16String([0xff,0xfe,0x34,0xd8,0x1e,0xdd])
+    "í ´í´ž"
+    
+Documentation
+-------------
+
+`StringUtils.readUTF8String(bytes, [maxBytes])`  
+    `bytes` - The array of bytes to be read.  
+    `maxBytes` - Optional parameter, maximum number of bytes to be read from the array. Default value is: `bytes.length`.  
+    `return value` - A String object with an aditional `bytesReadCount` property indicating how many bytes were read to create the string.
+
+`StringUtils.readUTF16String(bytes, [bigEndian], [maxBytes])`  
+    `bytes` - The array of bytes to be read.  
+    `bigEndian` - Optional parameter, the endianness of the string to be read. This parameter is only used when the string doesn't have a BOM. Default value is: `false`  
+    `maxBytes` - Optional parameter, maximum number of bytes to be read from the array. Default value is: `bytes.length`.  
+    `return value` - A String object with an aditional `bytesReadCount` property indicating how many bytes were read to create the string.
